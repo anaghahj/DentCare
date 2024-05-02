@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class BeautifulRow extends StatelessWidget {
+class wRow extends StatelessWidget {
   final String imagePath1;
   final String label1;
   final String imagePath2;
   final String label2;
 
-  BeautifulRow({
+  wRow({
     required this.imagePath1,
     required this.label1,
     required this.imagePath2,
@@ -19,45 +18,41 @@ class BeautifulRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        BeautifulContainer(imagePath: imagePath1, label: label1),
-        BeautifulContainer(imagePath: imagePath2, label: label2),
+        wContainer(imagePath: imagePath1, label: label1),
+        wContainer(imagePath: imagePath2, label: label2),
       ],
     );
   }
 }
 
-class BeautifulContainer extends StatelessWidget {
+class wContainer extends StatelessWidget {
   final String imagePath;
   final String label;
 
-  BeautifulContainer({required this.imagePath, required this.label});
+  wContainer({required this.imagePath, required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 160,
-      height: 160,
+      width: MediaQuery.of(context).size.width * 0.45,
+      height: MediaQuery.of(context).size.height * 0.24,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withOpacity(0.6),
             spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
+            blurRadius: 10,
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(15.0),
         child: Stack(
           children: [
             Image.asset(
               imagePath,
-              //width: double.infinity,
-              //height: double.infinity,
-              width: MediaQuery.of(context).size.width -
-                  8, // Full width of the screen
+              width: MediaQuery.of(context).size.width - 8,
               height: MediaQuery.of(context).size.height - 8,
               fit: BoxFit.cover,
             ),
@@ -74,16 +69,14 @@ class BeautifulContainer extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 8.0,
-              left: 8.0,
+              bottom: 10.0,
+              left: 10.0,
               child: Text(
                 label,
-                style: GoogleFonts.lato(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

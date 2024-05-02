@@ -1,46 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class soft extends StatelessWidget {
-  const soft({super.key});
+  const soft({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red.shade300,
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: HexColor("#FAEDCB"),
+        iconTheme: IconThemeData(color: Colors.black),
         title: Text(
-          "SoftTissue and Lacration",
-          style: GoogleFonts.sarabun(
-              fontSize: double.tryParse('25'), color: Colors.white),
+          "Laceration",
+          style: TextStyle(fontSize: 25, color: Colors.black),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 300,
+              width: double.infinity,
               child: Hero(
-                tag: 'softissue',
-                child: Image.asset('assets/images/softtissue.jpeg',
-                    fit: BoxFit.fill),
+                tag: 'soft',
+                child: Image.asset(
+                  'assets/images/laceration/lacer2.jpg',
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "When there are small bleeding sites in and around the oral cavity",
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Treatment option:",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '''a) Perform first aid like applying antiseptics, using gauze/cotton\nb) Visit the dentist for suggestions''',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.all(16),
-              child: Text(
-                '''
-1. Soft tissues can be frequently injured in an accident.
-2. Most common are cuts and bruises.
-3. These injuries can be inside or outside the mouth and should be cleaned as soon as possible.
-4. Bleeding from soft tissues should be controlled using pressure.
-5. Seek medical/dental care according to the severity of the injury.
-            ''',
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.sarabun(
-                    fontSize: 22, fontWeight: FontWeight.w300),
+              height: 300,
+              width: double.infinity,
+              child: Hero(
+                tag: 'softtissue2',
+                child: Image.asset(
+                  'assets/images/laceration/lacreation.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ],

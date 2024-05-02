@@ -1,51 +1,117 @@
-import 'package:appdev/widgets/mytimeline.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:timeline_tile/timeline_tile.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class chipped extends StatelessWidget {
-  const chipped({super.key});
+  chipped({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.red.shade300,
-          iconTheme: IconThemeData(color: Colors.white),
-          title: Text(
-            "Chipped Tooth",
-            style: GoogleFonts.sarabun(
-                fontSize: double.tryParse('25'), color: Colors.white),
-          ),
+      appBar: AppBar(
+        backgroundColor: HexColor("#FAEDCB"),
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          "Chipped Tooth",
+          style: TextStyle(fontSize: 25, color: Colors.black),
         ),
-        body: Container(
-          child: Column(
-            children: [
-              Container(
-                height: 320,
-                width: double.infinity,
-                child: Hero(
-                  tag: 'chipped',
-                  child: Image.asset('assets/images/chipped.jpeg',
-                      fit: BoxFit.fill),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.separated(
+          itemCount: chippedConditions.length,
+          separatorBuilder: (context, index) => SizedBox(height: 10),
+          itemBuilder: (context, index) {
+            return _buildChippedCondition(
+              context: context,
+              imagePath: chippedConditions[index]['imagePath'],
+              text: chippedConditions[index]['text'],
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChippedCondition({
+    String? imagePath,
+    String? text,
+    required BuildContext context,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        if (imagePath != null && imagePath.isNotEmpty) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Dialog(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.fill,
+                  ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.all(20),
+              );
+            },
+          );
+        }
+      },
+      child: Card(
+        color: HexColor("#FAEDCB"),
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (imagePath != null && imagePath.isNotEmpty)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    imagePath,
+                    width: 150,
+                    height: 150,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              SizedBox(width: 12),
+              Expanded(
                 child: Text(
-                  '''
-1.This is not an emergency, but definitely needs treatment.
-2.Try to find the broken piece and store it in water or milk (do not keep dry).
-3.Your dentist may be able to glue it back on.
-4.Visit your dentist as soon as possible
-                      ''',
+                  text ?? '',
                   textAlign: TextAlign.justify,
-                  style: GoogleFonts.sarabun(
-                      fontSize: 22, fontWeight: FontWeight.w300),
+                  style: TextStyle(fontSize: 19),
                 ),
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
+
+  final List<Map<String, String>> chippedConditions = [
+    {
+      'imagePath': "assets/images/chipped/mild.jpg",
+      'text':
+          "Try to find the broken piece of tooth and store it in water/saline/milk and bring it to the dentist to fix it back, if possible.",
+    },
+    {
+      'imagePath': "assets/images/chipped/moderate.jpg",
+      'text': "Restoration/filling of tooth if a small part is involved.",
+    },
+    {
+      'imagePath': "assets/images/chipped/severe.jpg",
+      'text':
+          "If any pink/red area is seen in the chipped area, that indicates nerve exposure, and must visit the dentist immediately.",
+    },
+    {
+      'imagePath': "",
+      'text':
+          '''CRACKED TOOTH\n\nA cracked tooth refers to a crack or fracture line on the tooth.\n\nTreatment options:\nWithout pain: Visit the dentist for further treatment. Will be restored.\nWith pain: Visit the dentist for further treatment. It might or might not require root canal treatment.''',
+    },
+  ];
 }

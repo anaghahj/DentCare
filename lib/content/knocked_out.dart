@@ -1,91 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class knocked extends StatelessWidget {
-  const knocked({super.key});
+  const knocked({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red.shade300,
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: HexColor("#FAEDCB"),
+        iconTheme: IconThemeData(color: Colors.black),
         title: Text(
-          "Knocked Tooth",
-          style: GoogleFonts.sarabun(
-              fontSize: double.tryParse('25'), color: Colors.white),
+          "Broken Jaw",
+          style: TextStyle(fontSize: 25, color: Colors.black),
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                height: 280,
-                child: Hero(
-                  tag: 'Tooth out of socket',
-                  child: Image.asset('assets/images/knocked.jpeg',
-                      fit: BoxFit.fill),
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Hero(
+              tag: 'broken',
+              child: Image.asset(
+                'assets/images/broken_jaw/broken_jaw.png',
+                fit: BoxFit.cover,
               ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Text(
-                      '''
-Act QUICKLY! The best chance to save the tooth is within the first 20 minutes of the accident
-                      ''',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.sarabun(
-                          fontSize: 24, fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      '''
-1. Find the tooth.
-2. Hold the tooth by the crown.Do not touch the root.
-3. Rinse briefly in water and immediately place the tooth back to its original place. despite the bleeding.
-4. To keep the tooth in place, close the mouth with a piece of gauze, clean handkerchief or pin between the upper and lower front teeth
-5. If the tooth cannot be placed back immediately, it should be kept moist. Milk of salive is usually available. Avoid letting the tooth dry out!
-6. Go immediately to the dentist.
-''',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.sarabun(
-                          fontSize: 20, fontWeight: FontWeight.w300),
-                    ),
-                    Text(
-                      '''
-CAUTION: The recommendations above are for permanent adult teeth
-
-NEVER PLACE A BABY TOOTH BACK IN THE MOUTH
-''',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.sarabun(
-                          fontSize: 24, fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      '''
-RECOMMENDATIONS:
-''',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.sarabun(
-                          fontSize: 24, fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      '''
-1. Attend follow up appointments, to manter the teeth
-2. Maintain good oral hygienis Gently brush the injured tooth or use cotton swab to keep injured site clean
-3. Children wha are still actively more likely su have complications to dental rauma
-''',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.sarabun(
-                          fontSize: 20, fontWeight: FontWeight.w300),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'When a part of the jaw is fractured/broken or when a part is moving',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'First aid:',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'If the child is conscious, encourage the child to keep their head straight, and tie a cloth around the face from the chin to the top of the head. To avoid biting their teeth too hard, ask the child to slightly open their mouth.',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Treatment option:',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    '1. Might require radiographic imaging\n2. Visit the dentist for necessary treatment',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
